@@ -1,0 +1,90 @@
+<head>
+  <title>Pokemon EXP Calculator (GEN-GEN)</title>
+  <script>
+    function calculateExperienceRateGen1V() {
+      // Get form and stat values from input fields
+      var formValue = parseInt(document.getElementById("form").value);
+      var statValue = parseFloat(document.getElementById("stats").value);
+
+      // Map form values to the desired range
+      var formMap = {
+        1: 0,
+        2: 0.20,
+        3: 0.40,
+        4: 0.60,
+        5: 0.80,
+        6: 1
+      };
+      formValue = formMap[formValue];
+
+      // Calculate experience rate using formula for GEN 1-V
+      var experienceRate = (((statValue - 175) / 880) * 2 + formValue) * 120 + 10;
+      experienceRate = Math.min(experienceRate, 255);
+
+      // Update result field with calculated experience rate
+      document.getElementById("result").value = Math.round(experienceRate);
+      document.title = "Pokemon EXP Calculator (GEN 1-V)";
+    }
+
+    function calculateExperienceRateVVIII() {
+      // Get form and stat values from input fields
+      var formValue = parseInt(document.getElementById("form").value);
+      var statValue = parseFloat(document.getElementById("stats").value);
+
+      // Map form values to the desired range
+      var formMap = {
+        1: 0,
+        2: 0.20,
+        3: 0.40,
+        4: 0.60,
+        5: 0.80,
+        6: 1
+      };
+      formValue = formMap[formValue];
+
+      // Calculate experience rate using formula for GEN V-VIII
+      var experienceRate = (((statValue - 175) / 605) * 495 + formValue * 20) + 5;
+      experienceRate = Math.min(experienceRate, 500);
+      experienceRate = Math.max(experienceRate, 5);
+
+      // Update result field with calculated experience rate
+      document.getElementById("result").value = Math.round(experienceRate);
+      document.title = "Pokemon EXP Calculator (GEN V-VIII)";
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Pokemon Experience Rate Generator By Prince Xaine</h1>
+  <p><p style="font-size: 22px;"> For creating more balanced ROM hacks.</p>
+  <br>
+  <br>
+   <p><p style="font-size: 20px;"> Instructions: Enter the evolutionary stage and stats of the Pokemon you wish to calculate a new exp rate for. Then press the Generation you are targeting.</p>
+  <form>
+    <label for="form">Evolution Stage:</label>
+    <select id="form">
+      <option value="1">Stage 1/3</option>
+      <option value="2">Stage 1/2</option>
+      <option value="3">Stage 1/1</option>
+      <option value="4">Stage 2/3</option>
+      <option value="5">Stage 2/2</option>
+      <option value="6">Stage 3/3</option>
+    </select>
+    <br>
+    <label for="stats">Total Base Stats:</label>
+    <input type="number" id="stats" min="175" max="780">
+    <br>
+    <button type="button" onclick="calculateExperienceRateGen1V()">GEN I-IV</button>
+    <button type="button" onclick="calculateExperienceRateVVIII()">V-VIII</button>
+  </form>
+  <br>
+ <label for="result">Experience Rate:</label>
+<input type="number" id="result" readonly>
+  <br>
+    <br>
+	  <br>
+	    <br>
+		  <br>
+ <p><p style="font-size: 20px;"> The main problem with the default experience rates is that they do not tend to reflect the Pokemon's stats or evolutionary stage.</p>
+ <p><p style="font-size: 20px;"> This experience generator will generate a new experience rate for your Pokemon based on its base stats and evolutionary stage. </p>
+</body>
